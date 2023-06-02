@@ -1,5 +1,7 @@
 package com.example.tranbaotu20.entity;
 
+import com.example.tranbaotu20.Validator.annotation.ValidCategoryId;
+import com.example.tranbaotu20.Validator.annotation.ValidUserId;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -29,4 +31,9 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ValidUserId
+    private  User user;
 }

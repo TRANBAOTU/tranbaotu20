@@ -32,18 +32,6 @@ public class BookController {
         model.addAttribute("categories",categoryService.getAllCategories());
         return "book/add";
     }
-    @PostMapping("/add")
-
-    public String addBook(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult, Model model)
-    {
-        if (bindingResult.hasErrors()){
-            model.addAttribute("categories", categoryService.getAllCategories());
-            return "bool/add";
-        }
-
-        bookService.addBook(book);
-        return "redirect:/books";
-    }
     @GetMapping("/edit/{id}")
     public String editBookForm(@PathVariable("id") Long id, Model model) {
         Book book = bookService.getBookById(id);
@@ -68,11 +56,13 @@ public class BookController {
         return "redirect:/books";
     }
 
+    @PostMapping("/add")
+    public String addBook(@Valid @ModelAttribute("book") Book book, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors() ) {
+            model.addAttribute("categories", categoryService.getAllCategories());
+            return "book/add";
+        }
+        bookService.addBook(book);
+        return "redirect:/books";
+    }
 }
-
-
-
-
-
-
-

@@ -1,12 +1,14 @@
 package com.example.tranbaotu20.entity;
 
+import com.example.tranbaotu20.Validator.annotation.ValidUsername;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
+import java.util.Set;
 @Data
 @Entity
 @Table(name = "user")
